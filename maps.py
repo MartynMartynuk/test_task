@@ -15,10 +15,3 @@ def function_mapper(function: str, value_1: float, value_2: float) -> None:
             return eval(with_numpy_str)
         except AttributeError:
             return eval(without_numpy_str)
-
-
-print(function_mapper('pow', 2, 0))
-print(function_mapper('sum', 2, 3))
-print(function_mapper('prod', 2, 18))
-
-
