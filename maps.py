@@ -1,8 +1,10 @@
 import collections
+from typing import Dict
+
 import numpy
 
-ColorMappper = collections.namedtuple('col_map', 'red green blue')
-color_mapper = ColorMappper(red=0, green=1, blue=2)
+# ColorMappper = collections.namedtuple('col_map', 'red green blue')
+color_mapper: dict[str, int] = {'red': 0, 'green': 1, 'blue': 2}
 
 
 def function_mapper(function: str, value_1: float, value_2: float) -> None:
