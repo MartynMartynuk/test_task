@@ -26,4 +26,4 @@ class C:
         return str(self.value)
 
     def toJSON(self):
-        return json.dumps(self.value)
+        return json.dumps(self.__dict__, default=str)
