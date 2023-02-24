@@ -29,15 +29,16 @@ def function_2(a_json, b_json):
     a = json.loads(a_json)
     b = json.loads(b_json)
     if type(a) is list and type(b) is list:
-        c_lst = []
-        i = 0
-        iter_a = iter(a)
-        iter_b = iter(b)
+        if len(a) == len(b):
+            c_lst = []
+            i = 0
+            iter_a = iter(a)
+            iter_b = iter(b)
 
-        while i < len(a):
-            c_lst.append(single_mean_handler(next(iter_a), next(iter_b)))
-            i += 1
-        return json.dumps(c_lst)
+            while i < len(a):
+                c_lst.append(single_mean_handler(next(iter_a), next(iter_b)))
+                i += 1
+            return json.dumps(c_lst)
     elif type(a) is dict and type(b) is dict:
         return single_mean_handler(a, b)
 
