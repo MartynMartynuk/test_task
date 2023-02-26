@@ -1,6 +1,6 @@
 import json
-from classes import *
-from maps import *
+from function_handler.services.classes import *
+from function_handler.services.maps import *
 
 a = '''[
     {"value": 1, "color": "red"},
@@ -26,8 +26,12 @@ c = [
 
 
 def function_2(a_json, b_json):
-    a = json.loads(a_json)
-    b = json.loads(b_json)
+    if type(a_json and b_json) is str:
+        a = json.loads(a_json)
+        b = json.loads(b_json)
+    else:
+        a = a_json
+        b = b_json
     if type(a) is list and type(b) is list:
         if len(a) == len(b):
             c_lst = []
@@ -38,7 +42,7 @@ def function_2(a_json, b_json):
             while i < len(a):
                 c_lst.append(single_mean_handler(next(iter_a), next(iter_b)))
                 i += 1
-            return json.dumps(c_lst)
+            return c_lst
     elif type(a) is dict and type(b) is dict:
         return single_mean_handler(a, b)
 
@@ -52,7 +56,7 @@ def single_mean_handler(a, b):
 
     lst[color_index] = res
     c_obj = C(lst)
-    return c_obj.toJSON()
+    return c_obj.__dict__()
 
 
 print(function_2(a, b))

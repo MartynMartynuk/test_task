@@ -25,5 +25,8 @@ class C:
     def __repr__(self):
         return str(self.value)
 
+    def __dict__(self):
+        return {'value': self.value}
+
     def toJSON(self):
         return json.dumps(self.__dict__, default=str)
