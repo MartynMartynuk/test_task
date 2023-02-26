@@ -1,31 +1,5 @@
 import json
-from dataclasses import dataclass
-
-from function_handler.models import A, B
-# from function_handler.services.classes import *
 from function_handler.services.maps import *
-
-a = '''[
-    {"value": 1, "color": "red"},
-    {"value": 2, "color": "green"},
-    {"value": -2, "color": "blue"}
-]'''
-b = '''[
-    {"function": "prod", "value": 2},
-    {"function": "sum", "value": 1},
-    {"function": "pow", "value": -2}
-]'''
-
-c = [
-    {"value": [2, 0, 0]},
-    {"value": [0, 3, 0]},
-    {"value": [0, 0, -0.25]}
-]
-
-
-# a = '''{"value": 1, "color": "red"}'''
-# b = '''{"function": "prod", "value": 2}'''
-# c = '''{"value": [2, 0, 0]}'''
 
 
 def function_2(a_json, b_json):
@@ -58,7 +32,3 @@ def single_mean_handler(a: dict, b: dict) -> dict:
         res = int(res)
     lst[color_index] = res
     return {'value': lst}
-
-
-if __name__ == '__main__':
-    print(function_2(a, b))

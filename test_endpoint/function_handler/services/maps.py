@@ -1,8 +1,6 @@
 from typing import Dict, Literal
-
 import numpy
 
-# ColorMappper = collections.namedtuple('col_map', 'red green blue')
 color_mapper: dict[Literal['red'] | Literal['green'] | Literal['blue'], int] \
     = {'red': 0, 'green': 1, 'blue': 2}
 
