@@ -32,3 +32,8 @@ def single_mean_handler(a: dict, b: dict) -> dict:
         res = int(res)
     lst[color_index] = res
     return {'value': lst}
+
+
+def is_valid(data):
+    return True if isinstance(data, dict) and tuple(data.keys()) == ('id_a', 'id_b')\
+        else False

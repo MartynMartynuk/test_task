@@ -17,7 +17,21 @@ def api_function_2(request):
 @api_view(['POST'])
 def api_function_3(request):
     if request.method == 'POST':
-        return JsonResponse('function3!', safe=False)
+        if is_valid(request.data):
+            id_a = request.data['id_a']
+            id_b = request.data['id_b']
+            try:
+                a = A.objects.get(pk=id_a)
+                b = B.objects.get(pk=id_b)
+            except:
+                return HttpResponse(status=406)
+            a_dict = dict(value=a.value, color=a.color)
+            b_dict = dict(function=b.function, value=b.value)
+            c_dict = function_2(a_dict, b_dict)
+            C.objects.create(value=c_dict['value'])
+            return JsonResponse(c_dict, safe=True)
+        else:
+            return HttpResponse(status=400)
 
 
 @api_view(['PUT'])
