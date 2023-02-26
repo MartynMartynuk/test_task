@@ -1,5 +1,7 @@
 import json
-from function_handler.services.classes import *
+
+from function_handler.models import A, B
+# from function_handler.services.classes import *
 from function_handler.services.maps import *
 
 a = '''[
@@ -48,15 +50,18 @@ def function_2(a_json, b_json):
 
 
 def single_mean_handler(a, b):
-    a_obj = A(a['value'], a['color'])
-    b_obj = B(b['function'], b['value'])
-    res = function_mapper(b_obj.function, a_obj.value, b_obj.value)
+    # a_obj = A(a['value'], a['color'])
+    # b_obj = B(b['function'], b['value'])
+    # a_obj = A.objects.create(value=a['value'], color=a['color'])
+    # b_obj = B.objects.create(function=b['function'], value=b['value'])
+    # print(a_obj)
+    # res = function_mapper(b_obj.function, a_obj.value, b_obj.value)
     lst = [0] * 3
-    color_index = color_mapper[a_obj.color]
+    # color_index = color_mapper[a_obj.color]
 
-    lst[color_index] = res
-    c_obj = C(lst)
-    return c_obj.__dict__()
+    # lst[color_index] = res
+    # c_obj = C(lst)
+    return lst
 
 
 print(function_2(a, b))

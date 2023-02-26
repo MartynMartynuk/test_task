@@ -3,11 +3,11 @@ from django.db import models
 
 class A(models.Model):
     value = models.FloatField()
-    color = models.CharField()
+    color = models.CharField(max_length=10)
 
 
 class B(models.Model):
-    function = models.CharField()
+    function = models.CharField(max_length=10)
     value = models.FloatField()
 
 
