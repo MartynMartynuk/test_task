@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('function_2/', api_function_2),
     path('function_3/', api_function_3),
+    path('put/', api_putter),
 ]
