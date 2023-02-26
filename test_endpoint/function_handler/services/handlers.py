@@ -54,10 +54,9 @@ def single_mean_handler(a: dict, b: dict) -> dict:
     res = function_mapper(b['function'], a['value'], b['value'])
     lst = [0] * 3
     color_index = color_mapper[a['color']]
-    if isinstance(res, int):
-        lst[color_index] = int(res)
-    else:
-        lst[color_index] = float(res)
+    if res % 1 == 0:
+        res = int(res)
+    lst[color_index] = res
     return {'value': lst}
 
 

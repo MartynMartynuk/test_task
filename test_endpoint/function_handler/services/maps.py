@@ -14,6 +14,6 @@ def function_mapper(function: str, value_1: float, value_2: float) -> float:
 
     if function in function_lst:
         try:
-            return eval(with_numpy_str)
+            return float(eval(with_numpy_str))
         except AttributeError:
             return eval(without_numpy_str)
