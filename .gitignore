@@ -1,3 +1,4 @@
 .gitignore
 .idea/
 test_endpoint/db.sqlite3
+.env
