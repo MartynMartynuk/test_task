@@ -1,13 +1,6 @@
-import json
-
-from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status as status_
-
-
-
-from function_handler.models import *
 from function_handler.serializers import *
 from function_handler.services.handlers import *
 
@@ -16,7 +9,7 @@ from function_handler.services.handlers import *
 def api_function_2(request):
     if request.method == 'POST':
         a, b = request.data
-        return JsonResponse(function_2(a, b), safe=False)
+        return Response(function_2(a, b))
 
 
 @api_view(['POST'])
@@ -35,7 +28,6 @@ def api_function_3(request, pk_a, pk_b):
             c_serializer.save()
             return Response(c_serializer.data, status=status_.HTTP_201_CREATED)
         return Response(c_serializer.errors, status=status_.HTTP_409_CONFLICT)
-
 
 
 @api_view(['POST'])

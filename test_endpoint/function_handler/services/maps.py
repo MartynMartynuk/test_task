@@ -1,4 +1,4 @@
-from typing import Dict, Literal
+from typing import Literal
 import numpy
 
 color_mapper: dict[Literal['red'] | Literal['green'] | Literal['blue'], int] \
