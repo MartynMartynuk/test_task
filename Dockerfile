@@ -1,7 +1,7 @@
 # pull official base image
-FROM python:3.10.3-alpine
+FROM python:3.10.3
 
-SHELL ["/bin/basg", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
