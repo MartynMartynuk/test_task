@@ -20,23 +20,22 @@ def api_function_2(request):
 
 
 @api_view(['POST'])
-def api_function_3(request):
+def api_function_3(request, pk_a, pk_b):
     if request.method == 'POST':
-        if is_valid(request.data):
-            id_a = request.data['id_a']
-            id_b = request.data['id_b']
-            try:
-                a = A.objects.get(pk=id_a)
-                b = B.objects.get(pk=id_b)
-            except:
-                return HttpResponse(status=406)
-            a_dict = dict(value=a.value, color=a.color)
-            b_dict = dict(function=b.function, value=b.value)
-            c_dict = function_2(a_dict, b_dict)
-            C.objects.create(value=c_dict['value'])
-            return JsonResponse(c_dict, safe=True)
-        else:
-            return HttpResponse(status=400)
+        try:
+            a = A.objects.get(pk=pk_a)
+            b = B.objects.get(pk=pk_b)
+        except:
+            return Response(status=status_.HTTP_406_NOT_ACCEPTABLE)
+        a_dict = dict(value=a.value, color=a.color)
+        b_dict = dict(function=b.function, value=b.value)
+        c_dict = function_2(a_dict, b_dict)
+        c_serializer = CSerializer(data=c_dict)
+        if c_serializer.is_valid():
+            c_serializer.save()
+            return Response(c_serializer.data, status=status_.HTTP_201_CREATED)
+        return Response(c_serializer.errors, status=status_.HTTP_409_CONFLICT)
+
 
 
 @api_view(['POST'])

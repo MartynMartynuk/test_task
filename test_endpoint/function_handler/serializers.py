@@ -17,4 +17,4 @@ class BSerializer(serializers.ModelSerializer):
 class CSerializer(serializers.ModelSerializer):
     class Meta:
         model = C
-        fields = ('value',)
+        fields = '__all__'
