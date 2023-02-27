@@ -3,6 +3,13 @@ from function_handler.services.maps import *
 
 
 def function_2(a_json, b_json):
+    """
+    Реализация function-2 - может работать как с полями dict, так и с list
+    (при множественном задании расчетов)
+    :param a_json:
+    :param b_json:
+    :return:
+    """
     if type(a_json and b_json) is str:
         a = json.loads(a_json)
         b = json.loads(b_json)
@@ -32,8 +39,3 @@ def single_mean_handler(a: dict, b: dict) -> dict:
         res = int(res)
     lst[color_index] = res
     return {'value': lst}
-
-
-def is_valid(data):
-    return True if isinstance(data, dict) and tuple(data.keys()) == ('id_a', 'id_b')\
-        else False

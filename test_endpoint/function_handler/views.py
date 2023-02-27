@@ -1,12 +1,15 @@
+from rest_framework import status as status_
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status as status_
 from function_handler.serializers import *
 from function_handler.services.handlers import *
 
 
 @api_view(['POST'])
 def api_function_2(request):
+    """
+    Api реализация function-2
+    """
     if request.method == 'POST':
         a, b = request.data
         return Response(function_2(a, b))
@@ -14,6 +17,11 @@ def api_function_2(request):
 
 @api_view(['POST'])
 def api_function_3(request, pk_a, pk_b):
+    """
+    Api реализация function-3
+    :param pk_a: id объекта А
+    :param pk_b: id объекта В
+    """
     if request.method == 'POST':
         try:
             a = A.objects.get(pk=pk_a)
@@ -32,6 +40,9 @@ def api_function_3(request, pk_a, pk_b):
 
 @api_view(['POST'])
 def api_poster(request):
+    """
+    Дополнительная функция добавления объектов А и В в БД
+    """
     if request.method == 'POST':
         print(request.data)
         a_serializer = ASerializer(data=request.data)
