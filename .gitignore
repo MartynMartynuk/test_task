@@ -2,3 +2,4 @@
 .idea/
 test_endpoint/db.sqlite3
 .env
+test_endpoint/function_handler/migrations/0001_initial.py
