@@ -42,7 +42,7 @@ def api_function_3(request, pk_a, pk_b):
 
 
 @api_view(['POST'])
-def api_poster(request):
+def api_adder(request):
     """
     Дополнительная функция добавления объектов А и В в БД
     """

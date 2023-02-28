@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('function_2/', api_function_2),
     path('function_3/<int:pk_a>/<int:pk_b>/', api_function_3),
-    path('post/', api_poster),
+    path('add/', api_adder),
 ]
