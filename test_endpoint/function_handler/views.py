@@ -11,8 +11,11 @@ def api_function_2(request):
     Api реализация function-2
     """
     if request.method == 'POST':
-        a, b = request.data
-        return Response(function_2(a, b))
+        a_serializer = ASerializer(data=request.data[0])
+        b_serializer = BSerializer(data=request.data[1])
+        if a_serializer.is_valid() and b_serializer.is_valid():
+            return Response(function_2(dict(a_serializer.data), dict(b_serializer.data)),
+                            status=status_.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -44,7 +47,6 @@ def api_poster(request):
     Дополнительная функция добавления объектов А и В в БД
     """
     if request.method == 'POST':
-        print(request.data)
         a_serializer = ASerializer(data=request.data)
         b_serializer = BSerializer(data=request.data)
         if a_serializer.is_valid():
