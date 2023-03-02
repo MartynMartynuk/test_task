@@ -14,8 +14,12 @@ def api_function_2(request):
         a_serializer = ASerializer(data=request.data[0])
         b_serializer = BSerializer(data=request.data[1])
         if a_serializer.is_valid() and b_serializer.is_valid():
-            return Response(function_2(dict(a_serializer.data), dict(b_serializer.data)),
-                            status=status_.HTTP_200_OK)
+            result = function_2(dict(a_serializer.data), dict(b_serializer.data))
+            if result is not None:
+                return Response(result,
+                                status=status_.HTTP_200_OK)
+            else:
+                return Response(status=status_.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
