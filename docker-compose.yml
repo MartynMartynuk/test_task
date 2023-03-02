@@ -4,11 +4,14 @@ services:
   web:
     image: test_task:latest
     container_name: test_task_container
+    build:
+      context: .
+      dockerfile: Dockerfile
     env_file:
       - .env
-    command:
-      - python test_endpoint/manage.py makemigrations
-      - python test_endpoint/manage.py migrate
-      - python test_endpoint/manage.py runserver 0.0.0.0:8000
+    command: >
+      bash -c "python test_endpoint/manage.py makemigrations
+      && python test_endpoint/manage.py migrate
+      && python test_endpoint/manage.py runserver 0.0.0.0:8008"
     ports:
-      - "8000:8000"
+      - "8008:8008"

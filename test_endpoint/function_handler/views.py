@@ -40,7 +40,7 @@ def api_function_3(request, pk_a, pk_b):
             return Response(c_serializer.data, status=status_.HTTP_201_CREATED)
         return Response(c_serializer.errors, status=status_.HTTP_409_CONFLICT)
 
-
+# TODO Split endpoint into A and B?
 @api_view(['POST'])
 def api_adder(request):
     """
