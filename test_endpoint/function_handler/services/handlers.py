@@ -1,10 +1,11 @@
 import json
+from function_handler.serializers import ASerializer, BSerializer
 from function_handler.services.maps import *
 
 
 def function_2(a_json: str | list | dict, b_json: str | list | dict) -> None | list | dict:
     # TODO Why declaration is without typing?
-    # Хотел обработать ошибки, но впоследствии забыл
+    # Хотел обработать ошибки, но впоследствии забыл :(
     """
     Реализация function-2 - может работать как с полями dict, так и с list
     (при множественном задании расчетов)
@@ -40,7 +41,33 @@ def single_mean_handler(a: dict, b: dict) -> dict | None:
         lst = [0] * 3
         color_index = color_mapper[a['color']]
         if res % 1 == 0:  # TODO What is the purpose of converting float to int?
-            res = int(res) #Причина в том, что в примерах был показан вывод числа int а не float в случае int ввода
+            res = int(res)  # Причина в том, что в примерах был показан вывод числа int а не float в случае int ввода
         lst[color_index] = res
         return {'value': lst}
     return res
+
+
+def serializer_checker(obj_lst: list, obj_class: str) -> bool:
+    """
+    Вспомогательная функция определения соответствия величин в списке сериализатору объекта
+    :param obj_lst: список
+    :param obj_class: тип объекта
+    :return:
+    """
+    if obj_class == 'A':
+        for obj_dict in obj_lst:
+            obj_serializer = ASerializer(data=obj_dict)
+            if obj_serializer.is_valid():
+                pass
+            else:
+                return False
+    elif obj_class == 'B':
+        for obj_dict in obj_lst:
+            obj_serializer = BSerializer(data=obj_dict)
+            if obj_serializer.is_valid():
+                pass
+            else:
+                return False
+    else:
+        return False
+    return True

@@ -15,11 +15,28 @@ def api_function_2(request):
         b_serializer = BSerializer(data=request.data[1])
         if a_serializer.is_valid() and b_serializer.is_valid():
             result = function_2(dict(a_serializer.data), dict(b_serializer.data))
-            if result is not None :
+            if result is not None:
                 return Response(result,
                                 status=status_.HTTP_200_OK)
             else:
                 return Response(status=status_.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def api_function_2_many(request):
+    """
+    Дополнительно определил эндпоинт для реализации множественного задания расчетов
+    :param request:
+    :return:
+    """
+    if request.method == 'POST':
+        a_lst = request.data[0]
+        b_lst = request.data[1]
+        if serializer_checker(a_lst, 'A') and serializer_checker(b_lst, 'B'):
+            result = function_2(a_lst, b_lst)
+            if result is not None:
+                return Response(result, status=status_.HTTP_200_OK)
+        return Response(status=status_.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
@@ -44,7 +61,9 @@ def api_function_3(request, pk_a, pk_b):
             return Response(c_serializer.data, status=status_.HTTP_201_CREATED)
         return Response(c_serializer.errors, status=status_.HTTP_409_CONFLICT)
 
+
 # TODO Split endpoint into A and B?
+# Можно, но нужно ли? Ведь использование сериализаторов позволяет идентифицировать и проверять получаемую информацию
 @api_view(['POST'])
 def api_adder(request):
     """

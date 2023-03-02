@@ -20,6 +20,7 @@ from function_handler.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('function_2/', api_function_2),
+    path('function_2/many/', api_function_2_many),
     path('function_3/<int:pk_a>/<int:pk_b>/', api_function_3),
     path('add/', api_adder),
 ]
