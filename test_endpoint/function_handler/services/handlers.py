@@ -2,7 +2,7 @@ import json
 from function_handler.services.maps import *
 
 
-def function_2(a_json: str or list or dict, b_json: str or list or json) -> None or list or dict:
+def function_2(a_json: str | list | dict, b_json: str | list | dict) -> None | list | dict:
     # TODO Why declaration is without typing?
     # Хотел обработать ошибки, но впоследствии забыл
     """
@@ -34,12 +34,13 @@ def function_2(a_json: str or list or dict, b_json: str or list or json) -> None
     return result
 
 
-def single_mean_handler(a: dict, b: dict) -> dict:
+def single_mean_handler(a: dict, b: dict) -> dict | None:
     res = function_mapper(b['function'], a['value'], b['value'])
-    lst = [0] * 3
-    color_index = color_mapper[a['color']]
-    print(type(res))
-    if res % 1 == 0:  # TODO What is the purpose of converting float to int?
-        res = int(res) #Причина в том, что в примерах был показан вывод числа int а не float в случае int ввода
-    lst[color_index] = res
-    return {'value': lst}
+    if res is not None:
+        lst = [0] * 3
+        color_index = color_mapper[a['color']]
+        if res % 1 == 0:  # TODO What is the purpose of converting float to int?
+            res = int(res) #Причина в том, что в примерах был показан вывод числа int а не float в случае int ввода
+        lst[color_index] = res
+        return {'value': lst}
+    return res

@@ -15,7 +15,7 @@ def api_function_2(request):
         b_serializer = BSerializer(data=request.data[1])
         if a_serializer.is_valid() and b_serializer.is_valid():
             result = function_2(dict(a_serializer.data), dict(b_serializer.data))
-            if result is not None:
+            if result is not None :
                 return Response(result,
                                 status=status_.HTTP_200_OK)
             else:
