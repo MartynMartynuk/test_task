@@ -35,18 +35,6 @@ def function_2(a_json: str | list | dict, b_json: str | list | dict) -> None | l
     return result
 
 
-def single_mean_handler(a: dict, b: dict) -> dict | None:
-    res = function_mapper(b['function'], a['value'], b['value'])
-    if res is not None:
-        lst = [0] * 3
-        color_index = color_mapper[a['color']]
-        if res % 1 == 0:  # TODO What is the purpose of converting float to int?
-            res = int(res)  # Причина в том, что в примерах был показан вывод числа int а не float в случае int ввода
-        lst[color_index] = res
-        return {'value': lst}
-    return res
-
-
 def serializer_checker(obj_lst: list, obj_class: str) -> bool:
     """
     Вспомогательная функция определения соответствия величин в списке сериализатору объекта
@@ -71,3 +59,15 @@ def serializer_checker(obj_lst: list, obj_class: str) -> bool:
     else:
         return False
     return True
+
+
+def single_mean_handler(a: dict, b: dict) -> dict | None:
+    res = function_mapper(b['function'], a['value'], b['value'])
+    if res is not None:
+        lst = [0] * 3
+        color_index = color_mapper[a['color']]
+        if res % 1 == 0:  # TODO What is the purpose of converting float to int?
+            res = int(res)  # Причина в том, что в примерах был показан вывод числа int а не float в случае int ввода
+        lst[color_index] = res
+        return {'value': lst}
+    return res
