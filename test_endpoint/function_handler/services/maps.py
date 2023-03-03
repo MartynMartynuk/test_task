@@ -2,6 +2,14 @@ import ast
 from typing import Literal, Any
 import numpy
 
+
+class FunctionMapper:
+    def __init__(self, value_1: float, value_2: float) -> None:
+        self.sum = value_1 + value_2
+        self.prod = value_1 * value_2
+        self.pow = value_1 ** value_2
+
+
 color_mapper: dict[Literal['red', 'green', 'blue'], int] \
     = {'red': 0, 'green': 1, 'blue': 2}
 
@@ -31,3 +39,14 @@ def function_mapper_2(function: str, value_1: float, value_2: float) -> float or
     elif function == 'prod':
         result = value_1 * value_2
     return result
+
+
+def function_mapper_3(function: str, value_1: float, value_2: float) -> float or None:
+    """
+    Реализация вызова функции  использованием
+    """
+    obj = FunctionMapper(value_1, value_2)
+    try:
+        return getattr(obj, function)
+    except AttributeError:
+        return None

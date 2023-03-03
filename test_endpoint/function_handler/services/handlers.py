@@ -65,7 +65,7 @@ def serializer_checker(obj_lst: list, obj_class: str) -> bool:
 def single_mean_handler(a: dict[Literal['value', 'color'], [float, str] ],
                         b: dict[Literal['function', 'value'], [str, float]]) -> \
         dict[Literal['value'], list] | None:
-    res = function_mapper(b['function'], a['value'], b['value'])
+    res = function_mapper_3(b['function'], a['value'], b['value'])
     if res is not None:
         lst = [0] * 3
         color_index = color_mapper[a['color']]
