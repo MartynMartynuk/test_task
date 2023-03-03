@@ -20,6 +20,7 @@ def api_function_2(request):
                                 status=status_.HTTP_200_OK)
             else:
                 return Response(status=status_.HTTP_400_BAD_REQUEST)
+        return Response((a_serializer.errors, b_serializer.errors), status=status_.HTTP_417_EXPECTATION_FAILED)
 
 
 @api_view(['POST'])

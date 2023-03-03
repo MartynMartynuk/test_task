@@ -42,6 +42,7 @@ def serializer_checker(obj_lst: list, obj_class: str) -> bool:
     :param obj_class: тип объекта
     :return:
     """
+    result = True
     if obj_class == 'A':
         for obj_dict in obj_lst:
             obj_serializer = ASerializer(data=obj_dict)
@@ -57,11 +58,13 @@ def serializer_checker(obj_lst: list, obj_class: str) -> bool:
             else:
                 return False
     else:
-        return False
-    return True
+        result = False
+    return result
 
 
-def single_mean_handler(a: dict, b: dict) -> dict | None:
+def single_mean_handler(a: dict[Literal['value', 'color'], [float, str] ],
+                        b: dict[Literal['function', 'value'], [str, float]]) -> \
+        dict[Literal['value'], list] | None:
     res = function_mapper(b['function'], a['value'], b['value'])
     if res is not None:
         lst = [0] * 3
